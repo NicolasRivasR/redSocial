@@ -111,7 +111,7 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user); //debe ser unico, puede fallar
 
     }
-    
+
     //Cambio del mail
     public User updateUserMail(int id, String mail) {
 
@@ -120,6 +120,12 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
 
     }
-    
+
+    //Borra un usuario de la base de datos
+    public void deleteAcount(int id) {
+
+        userRepository.deleteById(id);
+
+    }
 
 }
