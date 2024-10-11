@@ -43,7 +43,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
 
-                    registry.requestMatchers("/home", "/register/user").permitAll();
+                    registry.requestMatchers("/home", "/register/user", "/user/addPost/**").permitAll(); // QUITAR DE AQUI EL AÑADIR UN POST
                     registry.requestMatchers("/admin/**").hasAnyRole("ADMIN");
                     registry.requestMatchers("/user/**").hasRole("USER");
                     registry.anyRequest().authenticated();

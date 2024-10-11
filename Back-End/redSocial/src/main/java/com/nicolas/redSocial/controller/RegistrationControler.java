@@ -17,6 +17,19 @@ public class RegistrationControler {
     @Autowired
     private PasswordEncoder passwordEncoder;
             
+    
+    /*
+    {
+        "username": "john_doe1",
+        "mail": "johndoe2@example.com",
+        "password": "contraseña",
+        "firstName": "John",
+        "secondName": "Doe",
+        "bio": "Software engineer with a passion for technology.",
+        "profilePicture": "https://example.com/profile/johndoe.jpg",
+        "role": "USER"
+    }
+    */
     @PostMapping("/register/user")
     public User createNewUser(@RequestBody User user){
         

@@ -47,6 +47,17 @@ public class Post {
     public Post() {
     }
 
+    public Post(int id, String content, String videoUrl, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.content = content;
+        this.videoUrl = videoUrl;
+        this.imageUrl = imageUrl;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+    
+    
+
     public Post(int id, String content, String videoUrl, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt, User user) {
         this.id = id;
         this.content = content;

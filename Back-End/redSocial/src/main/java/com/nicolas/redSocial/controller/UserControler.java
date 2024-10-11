@@ -1,7 +1,11 @@
 package com.nicolas.redSocial.controller;
 
+import com.nicolas.redSocial.models.User;
+import com.nicolas.redSocial.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class UserControler {
    
+    @Autowired
+    private UserService userService;
+    
     @GetMapping("/home")
     public String hola(){
         return "Hooa";
@@ -19,6 +26,13 @@ public class UserControler {
     @GetMapping("/user")
     public String user(){
         return "Niverl de usuario basico";
+    }
+    
+    @GetMapping("/user/info/{id}")
+    public User getuserInfo(@PathVariable int id){
+    
+        return userService.getUserById(id);
+        
     }
     
     @GetMapping("/admin")

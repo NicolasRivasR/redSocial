@@ -42,6 +42,17 @@ public class UserService implements UserDetailsService {
             return user.getRole().split(",");
         }
     };
+    
+    public User getUserById(int userId){
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+
+            return user.get();
+         
+        } else {
+            throw new UsernameNotFoundException("El usuario no existe en la base de datos");
+        }
+    }
 
     /*
     @Autowired
