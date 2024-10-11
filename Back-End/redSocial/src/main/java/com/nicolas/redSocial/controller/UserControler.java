@@ -28,12 +28,30 @@ public class UserControler {
         return "Niverl de usuario basico";
     }
     
+    //Busca un usuario por su id y si existe lo devuleve
     @GetMapping("/user/info/{id}")
-    public User getuserInfo(@PathVariable int id){
+    public User getUserInfoById(@PathVariable int id){
     
         return userService.getUserById(id);
         
     }
+    
+    //Busca un usuario por su nombre y si existe lo devuleve
+    @GetMapping("/user/info/{username}")
+    public User getUserInfoByUsername(@PathVariable String username){
+    
+        return userService.getUserByUername(username);
+        
+    }
+    
+    //Busca un usuario por su mail y si existe lo devuleve
+    @GetMapping("/user/info/{mail}")
+    public User getuserInfoByMail(@PathVariable String mail){
+    
+        return userService.getUserByMail(mail);
+        
+    }
+    
     
     @GetMapping("/admin")
     public String admin(){
