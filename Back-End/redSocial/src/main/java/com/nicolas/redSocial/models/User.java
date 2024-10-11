@@ -20,6 +20,7 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; //-> probar como Long cuando esten todas los modelos 
+    
     @Column(name = "username")
     private String username;
     
@@ -29,13 +30,14 @@ public class User{
     
     @Column(name = "first_name")
     private String firstName;
+    
     @Column(name = "last_name")
     private String secondName;
     
     private String bio;
     
     @Column(name = "profile_picture")
-    private String prfilePicture;
+    private String profilePicture;
     
     @CreationTimestamp
     @Column(name = "created_at")
@@ -47,9 +49,14 @@ public class User{
     
     @Column(name = "user_role")
     private String role;
+
+
+    public User() {
+    }
+    
     
 
-    public User(int id, String username, String mail, String password, String firstName, String secondName, String bio, String prfilePicture, LocalDateTime createdAt, LocalDateTime updatedAt, String role) {
+    public User(int id, String username, String mail, String password, String firstName, String secondName, String bio, String profilePicture, LocalDateTime createdAt, LocalDateTime updatedAt, String role) {
         this.id = id;
         this.username = username;
         this.mail = mail;
@@ -57,7 +64,7 @@ public class User{
         this.firstName = firstName;
         this.secondName = secondName;
         this.bio = bio;
-        this.prfilePicture = prfilePicture;
+        this.profilePicture = profilePicture;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.role = role;
@@ -71,12 +78,12 @@ public class User{
         this.id = id;
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUserName(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMail() {
@@ -119,12 +126,12 @@ public class User{
         this.bio = bio;
     }
 
-    public String getPrfilePicture() {
-        return prfilePicture;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setPrfilePicture(String prfilePicture) {
-        this.prfilePicture = prfilePicture;
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public LocalDateTime getCreatedAt() {
