@@ -33,10 +33,26 @@ public class PostController {
     
     @PostMapping("/addPost/{userId}")
     public ResponseEntity<Post> addPost(@PathVariable int userId, @RequestBody Post post) {
-        System.out.println("Voy a llamar al servicio");
+        
         Post newPost = postService.crearPostParaUsuario(userId, post);
-        System.out.println("Ya ta lo del servicio");
+        
         return ResponseEntity.ok(newPost);
 
+    }
+    
+    @PostMapping("/updatePost/{userId}/{postId}")
+    public ResponseEntity<Post> updatePost(@PathVariable int userId, @PathVariable int postId){
+        Post updatedPost;
+        try {
+           updatedPost = postService.updatePost(userId, postId);
+        } catch (Exception e) {
+            
+            return (ResponseEntity<Post>) ResponseEntity.notFound();
+            
+        }
+            
+        return ResponseEntity.ok(updatedPost);
+                
+      
     }
 }
