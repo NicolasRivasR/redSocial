@@ -2,6 +2,7 @@ package com.nicolas.redSocial.service;
 
 import com.nicolas.redSocial.models.User;
 import com.nicolas.redSocial.repository.UserRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,12 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("El usuario no existe en la base de datos");
         }
 
+    }
+    
+    public List<User> getAllUSers(){
+    
+        return userRepository.findAll();
+        
     }
 
     //Determnia los roles del usuario

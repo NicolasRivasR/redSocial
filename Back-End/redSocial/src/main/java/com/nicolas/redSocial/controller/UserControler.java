@@ -2,6 +2,7 @@ package com.nicolas.redSocial.controller;
 
 import com.nicolas.redSocial.models.User;
 import com.nicolas.redSocial.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,8 +22,9 @@ public class UserControler {
     private UserService userService;
     
     @GetMapping("/home")
-    public String hola(){
-        return "Hooa";
+    public List<User> hola(){
+
+        return userService.getAllUSers();
     }
     
     @GetMapping("/user")

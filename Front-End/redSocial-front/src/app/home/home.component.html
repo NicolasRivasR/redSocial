@@ -1,0 +1,13 @@
+<div>
+    <h2>Lista de los ususarios registrados</h2>
+    <button (click)="fetchUsers()">Boton</button>
+    @if (users) {
+        <ul>
+            @for (user of users; track user.id) {
+                <li> {{ user.username }}   </li>
+            }
+    
+        </ul>
+    }
+
+</div>

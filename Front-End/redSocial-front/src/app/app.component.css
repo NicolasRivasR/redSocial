@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.title {
+    margin: 20px; /* Espacio desde los bordes del cuerpo */
+    font-size: 24px; /* Tamaño del título */
+    color: black; /* Color del texto */
+    position: absolute; /* Posiciona el título en la esquina */
+    top: 10px; /* Espacio desde la parte superior */
+    left: 20px; /* Espacio desde la parte izquierda */
+}
+
+.nav {
+    display: flex;
+    justify-content: flex-end; /* Para alinear los enlaces a la derecha */
+    gap: 10px; /* Espacio entre los enlaces */
+    padding: 20px; /* Añadir un poco de espacio al contenedor */
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, purple, black);
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+a:hover {
+    background: linear-gradient(45deg, black, purple);
+}
