@@ -1,6 +1,7 @@
 package com.nicolas.redSocial.webtoken;
 
 import com.nicolas.redSocial.models.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.time.Instant;
@@ -34,5 +35,23 @@ public class JwtService {
         byte[] key = Base64.getDecoder().decode(SKEY);
         return Keys.hmacShaKeyFor(key);
 
+    }
+    
+    private Claims getcalClaims(String jwt){
+            return Jwts.parser()
+                .verifyWith(generaSecretKey())
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
+    }
+
+    public String extractUsername(String jwt) {
+        Claims claims = getcalClaims(jwt);
+        return claims.getSubject();
+    }
+
+    public boolean isValid(String jwt) {
+        Claims claims = getcalClaims(jwt);
+        return  claims.getExpiration().after(Date.from(Instant.now()));
     }
 }
