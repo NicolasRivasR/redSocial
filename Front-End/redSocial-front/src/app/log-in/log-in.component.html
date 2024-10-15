@@ -1,1 +1,45 @@
-<p>log-in works!</p>
+<body>
+
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form action="/login" method="POST">
+            <label for="username">Usuario</label>
+            <input type="text"  id="username" name="username" placeholder="Ingresa tu usuario" required>
+
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <p>{{logInForm.get}}</p>
+
+</body>
+
+<div class="parent">
+    <div class="container">
+        <form ="logInForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="email" formControlName="username" placeholder="username">
+                <i class='bx bx-envelope'></i>
+
+                <div class="text-danger">
+                @if (logInForm.controls['username'].touched && logInForm.controls['username'].errors?.['required']) {
+                <span>This is required</span>
+                }
+            </div>
+
+            <div class="input-box">
+                <input type="password" formControlName="password" placeholder="Password">
+                <i class='bx bx-lock-alt'></i>
+
+                <div class="text-danger">
+                    @if (logInForm.controls['password'].touched && logInForm.controls['password'].errors?.['minlength']) {
+                    <span>This is required</span>
+                    }
+            </div>
+            </div>
+
+    </div>

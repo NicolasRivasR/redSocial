@@ -1,1 +1,54 @@
-<p>register works!</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <div class="fields">
+        <label for="username">
+            Nombre de usuario
+        </label>
+        <input is="username" formControlName="username">
+         
+    </div>
+
+    <div>
+        <label for="mail">Correo electronico</label>
+        <input is="mail" formControlName="mail">
+
+    </div>
+
+    <div>
+        <label for="firstName"> Nombre </label>
+        <input is="firstName" formControlName="firstName">
+    </div>
+
+    <div> 
+        <label for="firstName">Nombre</label>
+        <input is="firstName" formControlName="firstName">
+    </div>
+    
+    <div class="fields">
+        <label for="secondName">Apellido</label>
+        <input is="secondName" formControlName="secondName">
+    </div>
+
+    <div class="fields">
+        <label for="bio">Biografía</label>
+        <input is="bio" formControlName="bio">
+    </div>
+
+    <div class="fields">
+        <label for="profilePicture">Url foto de perfil</label>
+        <input is="profilePicture" formControlName="profilePicture">
+    </div>
+
+    <div class="fields">
+        <label for="password">Contraseña</label>
+        <input is="password" formControlName="password">
+    </div>
+   
+    <div class="fields">
+        <label for="confPassword">Repetir contraseña</label>
+        <input is="confPassword" formControlName="confPassword">
+    </div>
+
+
+    <button type="submit" label = "Register" [disabled]="registerForm.invalid"> </button>
+</form>
