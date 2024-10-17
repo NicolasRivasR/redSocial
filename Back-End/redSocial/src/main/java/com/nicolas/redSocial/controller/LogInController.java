@@ -3,7 +3,10 @@ package com.nicolas.redSocial.controller;
 import com.nicolas.redSocial.service.UserService;
 import com.nicolas.redSocial.webtoken.JwtService;
 import com.nicolas.redSocial.webtoken.LogInForm;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +30,7 @@ public class LogInController {
     private UserService userService;
 
     @PostMapping("/authenticate")
-    public String autenticateAndGetToken(@RequestBody LogInForm logInForm) {
+    public ResponseEntity<Map<String, String>> autenticateAndGetToken(@RequestBody LogInForm logInForm) {
         System.out.println("Entro en la funcion de autenticar ");
         System.out.println(".--------------------------.");
         Authentication res = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(logInForm.getUsername(), logInForm.getPassword()));
@@ -36,7 +39,11 @@ public class LogInController {
         if (res.isAuthenticated()) {
             System.out.println("Todo fino primo");
             System.out.println(".--------------------------.");
-            return jwtService.generateToken(userService.loadUserByUsername(logInForm.getUsername()));
+            String token = jwtService.generateToken(userService.loadUserByUsername(logInForm.getUsername()));
+            System.out.println("Tu token: " + token);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            return ResponseEntity.ok(response);
         } else {
             throw new UsernameNotFoundException("Invalid Credentials");
         }

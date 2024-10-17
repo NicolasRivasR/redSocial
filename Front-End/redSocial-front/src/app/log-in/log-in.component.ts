@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { FormGroup, FormControl,ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { errorContext } from 'rxjs/internal/util/errorContext';
+import { Logindata } from '../interfaces/Logindata';
 
 
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
@@ -15,36 +16,24 @@ export class LogInComponent {
 
   authService = inject(AuthService)
 
-  logInForm = new FormGroup({
-
+  logForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
-
   })
 
-  token?: String
 
-  doLogIn(){
+  tryLogIn(){
 
-    const formValues = this.logInForm.value;
-
-    if(formValues.username == '' || formValues.username == null || formValues.password == '' || formValues.password == null){
-
-      alert("Wrong Credentials")
-      return;
-
-    }
-
-    this.authService.logIn(formValues.username, formValues.password).subscribe({
+    console.log("Llamo al api")
+    this.authService.logIn(this.logForm.value as Logindata).subscribe({
       next:(res) => {
-        console.log("Received Response:"+res.token);
-        this.token = res.token;
+        console.log(res);
       }, error: (err) => {
-        console.log("Error Received Response:"+err);
-        this.token = undefined ;
+        console.log(err);
       }
     });
 
   }
 
+  
 }

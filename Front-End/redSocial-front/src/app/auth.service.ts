@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
-import { Observable, retry } from 'rxjs';
+import { Logindata } from './interfaces/Logindata';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -10,10 +11,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  private APIURL: string = "http://localhost:8080/authenticate";
 
-  logIn(username: string | null | undefined, password: string | null | undefined): Observable<any>{
+  private apip: string = "http://localhost:8080/geeet"
 
-    return this.http.post<any>("http://localhost:8080/login", {username, password});
+  logIn(logindata : Logindata){
+
+    console.log("Llamo al api 2")
+    return this.http.post<{ token: string }>(this.APIURL, logindata) .pipe(
+      // Recoge solo el token de la respuesta
+      map(response => response.token));
 
   }
 

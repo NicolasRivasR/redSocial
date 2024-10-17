@@ -14,9 +14,6 @@ export class RegsitrationService {
 
   registerUser(registerForm: RegisterData){
 
-    console.log("vOy a llamar al api"
-    )
-
     return this.http.post(this.APIURL, registerForm)
 
 
