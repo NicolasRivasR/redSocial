@@ -28,9 +28,14 @@ public class LogInController {
 
     @PostMapping("/authenticate")
     public String autenticateAndGetToken(@RequestBody LogInForm logInForm) {
+        System.out.println("Entro en la funcion de autenticar ");
+        System.out.println(".--------------------------.");
         Authentication res = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(logInForm.getUsername(), logInForm.getPassword()));
-
+        System.out.println("Lo hise ");
+        System.out.println(".--------------------------.");
         if (res.isAuthenticated()) {
+            System.out.println("Todo fino primo");
+            System.out.println(".--------------------------.");
             return jwtService.generateToken(userService.loadUserByUsername(logInForm.getUsername()));
         } else {
             throw new UsernameNotFoundException("Invalid Credentials");

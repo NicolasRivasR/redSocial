@@ -5,6 +5,7 @@ import com.nicolas.redSocial.webtoken.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -46,9 +47,10 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
-
+                    registry.requestMatchers(HttpMethod.OPTIONS).permitAll();
                     registry.requestMatchers("/home", "/register/user", "/user/addPost/**" , "/authenticate").permitAll(); // QUITAR DE AQUI EL AÑADIR UN POST
                     registry.requestMatchers("/admin/**").hasAnyRole("ADMIN");
                     registry.requestMatchers("/user/**").hasRole("USER");
