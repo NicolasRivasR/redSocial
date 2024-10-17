@@ -1,6 +1,7 @@
 import { HttpClient, } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 
 @Injectable({
@@ -9,6 +10,8 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   constructor(private http: HttpClient) { }
+
+  storage = inject(LocalStorageService)
 
   users = [
 
@@ -26,16 +29,34 @@ export class UserService {
 
   ]
 
+  private USERAPI: string = "http://localhost:8080/user"
+
+  private HOMEAPI: string = "http://localhost:8080/home"
+
   usersFormBack: any[] = [];
+
+  key = "Bearer " + this.storage.get('auth-key')
+
 
   public getUsers(): Observable<any[]>{
 
-    return this.http.get<any[]>("http://localhost:8080/home", { headers: { Accept: 'application/json' }});
+    return this.http.get<any[]>(this.HOMEAPI, { headers: { Accept: 'application/json' }});
 
   }
   getAllUsers(){
 
     return this.users;
+
+  }
+
+  getUserInfo(usernaeme: string){
+
+    console.log("A ver si llego aqui")
+
+    console.log("La clave es " + this.key)
+
+    return this.http.get(this.USERAPI + "/info/name/" + usernaeme, { headers: { Authorization: this.key }})
+
 
   }
 
