@@ -1,13 +1,15 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 32px;
-    margin-left: 125px;
-    margin-top: 125px;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items:baseline;
+    background-color: #ffffff;
 
 }
+
+
 
 .title{
 
@@ -26,6 +28,10 @@ body {
     align-items: center;
     margin: 0px 0px 10px;
     padding: 10px 80px;
+    margin-top: 10px;
+    padding-top: 30px;
+    padding-bottom: 150px;
+    text-align: center;
 
 }
 
