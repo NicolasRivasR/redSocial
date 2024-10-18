@@ -1,10 +1,12 @@
 package com.nicolas.redSocial.controller;
 
+import com.nicolas.redSocial.DAOs.UserDao;
 import com.nicolas.redSocial.models.User;
 import com.nicolas.redSocial.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,9 +44,17 @@ public class UserControler {
 
     //Busca un usuario por su nombre y si existe lo devuleve
     @GetMapping("/user/info/name/{username}")
-    public ResponseEntity<User> getUserInfoByUsername(@PathVariable String username) {
+    public ResponseEntity<UserDao> getUserInfoByUsername(@PathVariable String username) throws UsernameNotFoundException {
+        User user;
+        try {
+           user = userService.getUserByUername(username);
+        } catch (Exception e) {
+                return (ResponseEntity<UserDao>) ResponseEntity.notFound();
+        }
+            
+        return ResponseEntity.ok(userToUserDao(user));
+        
 
-        return ResponseEntity.ok(userService.getUserByUername(username));
     }
 
     //Busca un usuario por su mail y si existe lo devuleve
@@ -92,5 +102,11 @@ public class UserControler {
     @GetMapping("/admin")
     public String admin() {
         return "Niverl de administrador";
+    }
+    
+    private UserDao userToUserDao(User user){
+    
+        return new UserDao(user.getUsername(), user.getMail(), user.getFirstName(), user.getSecondName(), user.getBio() , user.getProfilePicture());
+        
     }
 }

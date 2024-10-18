@@ -1,0 +1,51 @@
+.profile-container {
+    max-width: 800px; /* Ancho máximo para la página del perfil */
+    margin: 0 auto;   /* Centra horizontalmente */
+    background-color: white; /* Fondo blanco */
+    border: 1px solid #e1e8ed; /* Borde alrededor para destacarlo del fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  }
+  
+  /* Ajustes de la cabecera y la imagen de portada */
+  .header {
+    border-bottom: none; /* Eliminar el borde inferior que ya no es necesario */
+  }
+  
+  .cover-photo {
+    height: 150px; /* Reducir la altura de la imagen de portada */
+  }
+  
+  .cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Ajustes del perfil */
+  .profile-section {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+  }
+  
+  .profile-img {
+    width: 120px; /* Reducir el tamaño de la imagen de perfil */
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white; /* Borde más pequeño para la imagen */
+    margin-right: 20px;
+    position: absolute;
+    top: -60px; /* Ajustar la posición de la imagen */
+  }
+  
+  .user-info {
+    margin-top: 60px; /* Ajuste para que quede bien con la imagen de perfil */
+  }
+  
+  .user-name {
+    font-size: 20px; /* Ajustar el tamaño del nombre */
+  }
+  

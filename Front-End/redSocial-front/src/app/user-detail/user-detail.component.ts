@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../interfaces/User';
 
 @Component({
   selector: 'app-user-detail',
@@ -17,7 +18,7 @@ export class UserDetailComponent {
 
   username?: string | null;
 
-  user: any
+  user?: User
 
   ngOnInit(): void {
 
@@ -25,6 +26,7 @@ export class UserDetailComponent {
     this.userservice.getUserInfo(this.username as string).subscribe({
       next:(res) => {
         console.log(res);
+        this.user = res as User
       }, error: (err) => {
         console.log(err);
       }
