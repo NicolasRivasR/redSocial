@@ -4,7 +4,9 @@ import com.nicolas.redSocial.models.Post;
 import com.nicolas.redSocial.models.User;
 import com.nicolas.redSocial.repository.PostRepository;
 import com.nicolas.redSocial.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,16 @@ public class PostService {
         } else {
             throw new Exception("El posto no pertenece al usuario que lo quiere modificar");
         }
+    }
+    
+    public List<Post> getPostsFromUser(int userid){
+    
+        Optional<List<Post>> posts =  postRepository.findByUserId(userid);
+        
+        if(posts.isPresent()){
+            return posts.get();
+        }
+        return new ArrayList<>() ;
     }
 
     public List<Post> getAllPost() {

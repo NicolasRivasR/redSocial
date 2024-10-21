@@ -2,8 +2,9 @@ package com.nicolas.redSocial.controller;
 
 import com.nicolas.redSocial.DAOs.PostDao;
 import com.nicolas.redSocial.models.Post;
+import com.nicolas.redSocial.models.User;
 import com.nicolas.redSocial.service.PostService;
-import java.time.LocalDateTime;
+import com.nicolas.redSocial.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/post")
     public List<PostDao> getAllPost() {
@@ -58,6 +62,21 @@ public class PostController {
 
         return ResponseEntity.ok(updatedPost);
 
+    }
+    
+    @GetMapping("/posts/{username}")
+    public ResponseEntity<List<PostDao>> getPostsFromUser(@PathVariable String username){
+        User u;
+        try {
+            u = userService.getUserByUername(username);
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        List<Post> posts = postService.getPostsFromUser(u.getId());
+        
+        return ResponseEntity.ok(posts.stream().map(post ->  postToPostDao(post)).collect(Collectors.toList()));
+     
     }
 
     private PostDao postToPostDao(Post post) {
