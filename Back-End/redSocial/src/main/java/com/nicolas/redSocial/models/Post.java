@@ -40,7 +40,7 @@ public class Post {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

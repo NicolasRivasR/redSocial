@@ -4,6 +4,7 @@ import com.nicolas.redSocial.models.Post;
 import com.nicolas.redSocial.models.User;
 import com.nicolas.redSocial.repository.PostRepository;
 import com.nicolas.redSocial.repository.UserRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,23 +29,28 @@ public class PostService {
         // Guardar el post en la base de datos
         return postRepository.save(post);
     }
-    
+
     //Actualia un post, con id post id, del usuario con id userId
-    public Post updatePost(int userId, int postId) throws Exception{
-    
+    public Post updatePost(int userId, int postId) throws Exception {
+
         User user = userRepository.findById(userId)
                 .orElseThrow(()
                         -> new IllegalArgumentException("Usuario con ID " + userId + " no encontrado."));
         Post post = postRepository.findById(postId).
-                orElseThrow(() -> new IllegalArgumentException("No esxiste el post con id " + postId)); 
-        
-        if(post.getUser().getId() == user.getId()){
-        
+                orElseThrow(() -> new IllegalArgumentException("No esxiste el post con id " + postId));
+
+        if (post.getUser().getId() == user.getId()) {
+
             return postRepository.save(post);
-            
-        }
-        else{
+
+        } else {
             throw new Exception("El posto no pertenece al usuario que lo quiere modificar");
         }
+    }
+
+    public List<Post> getAllPost() {
+
+        return postRepository.findAll();
+
     }
 }
