@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class PostController {
 
     @Autowired
@@ -66,6 +68,8 @@ public class PostController {
     
     @GetMapping("/posts/{username}")
     public ResponseEntity<List<PostDao>> getPostsFromUser(@PathVariable String username){
+        
+        System.out.println("A buscar al usuario");
         User u;
         try {
             u = userService.getUserByUername(username);
