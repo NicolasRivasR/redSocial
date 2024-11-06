@@ -5,7 +5,7 @@
             <img src="https://via.placeholder.com/1200x400" alt="Imagen de portada" class="cover-img">
           </div>
           <div class="profile-section">
-            <img src="https://via.placeholder.com/150" alt="Foto de perfil" class="profile-img">
+            <img src={{user?.profilePicture}} alt="Foto de perfil" class="profile-img">
             <div class="user-info">
               <h1 class="user-name">{{user?.username}}</h1>
               <p class="user-handle">{{user?.firstName}} {{user?.secondName}}</p>
@@ -13,6 +13,20 @@
             </div>
         </div>
         </header>
+
+        <main class="content">
+          <section class="tweets">
+            @for (post of postslist; track post.id) {              
+              
+              <article class="tweet">
+              <p> {{post.content}} </p>
+              <p class="tweet-time"></p>
+            
+            </article>}
+
+            
+          </section>
+        </main>
     
       </div>
 </body>

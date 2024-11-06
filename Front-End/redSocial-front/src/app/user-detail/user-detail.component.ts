@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/User';
+import { PostService } from '../post.service';
+import { Post } from '../interfaces/Post';
 
 @Component({
   selector: 'app-user-detail',
@@ -16,9 +18,13 @@ export class UserDetailComponent {
 
   userservice = inject(UserService)
 
+  postservice = inject(PostService)
+
   username?: string | null;
 
   user?: User
+
+  postslist?: [Post]
 
   ngOnInit(): void {
 
@@ -27,6 +33,16 @@ export class UserDetailComponent {
       next:(res) => {
         console.log(res);
         this.user = res as User
+      }, error: (err) => {
+        console.log(err);
+      }
+    }
+    );
+
+    this.postservice.getPostsFromUser(this.username as string).subscribe({
+      next:(res) => {
+        console.log(res);
+        this.postslist = res as [Post]
       }, error: (err) => {
         console.log(err);
       }

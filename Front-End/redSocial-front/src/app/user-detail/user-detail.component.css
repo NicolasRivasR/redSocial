@@ -48,4 +48,32 @@
   .user-name {
     font-size: 20px; /* Ajustar el tamaño del nombre */
   }
+
+
+  .content {
+    padding: 20px;
+  }
+  
+  .tweets {
+    background-color: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .tweet {
+    border-bottom: 1px solid #e1e8ed;
+    padding: 15px 0;
+  }
+  
+  .tweet:last-child {
+    border-bottom: none;
+  }
+  
+  .tweet-time {
+    color: #657786;
+    font-size: 14px;
+    margin-top: 5px;
+  }
   
